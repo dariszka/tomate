@@ -1,0 +1,23 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: inherit;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.light {
+    background-color: rgb(175, 115, 167);
+    color: rgb(43, 0, 28);
+}
+
+.dark {
+    background-color: rgb(43, 0, 28);
+    color: rgb(175, 115, 167);
+}
