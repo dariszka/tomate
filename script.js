@@ -5,4 +5,8 @@
 //     greeting.textContent = 'hello babe have a nice study Xx'
 //     container.appendChild(greeting)
 
-const greeting = document.querySelector('#greeting');
+const content = document.querySelector('#content');
+    
+function makeSettings() {
+    //write and add every setting
+}
