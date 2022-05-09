@@ -1,12 +1,20 @@
-// const container = document.querySelector('#container'); 
+const settings = document.querySelector('#settings');
 
-// const greeting = document.createElement('div')
-//     greeting.classList.add('greeting')
-//     greeting.textContent = 'hello babe have a nice study Xx'
-//     container.appendChild(greeting)
+settings.addEventListener('click', clickOnSettings)
 
-const content = document.querySelector('#content');
-    
-function makeSettings() {
+function clickOnSettings() {
+    settings.classList.toggle('rotate')
+} 
+
+function createSettingsContents() {
     //write and add every setting
+
+    //dark/light mode
+    //work length
+    //break length
+    //goal, progress
+}
+
+function showSettingsContents() {
+    
 }

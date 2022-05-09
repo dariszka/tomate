@@ -21,7 +21,15 @@ body {
 #settings{
     align-self: flex-end;
     margin: 25px 25px 0px 0px;
+    width: 35px;
+    height: 35px;
+    transition: 0.5s;
 }
+
+.rotate {
+    transform: rotate(180deg)
+}
+
 
 #content {
     align-self: center;
@@ -47,6 +55,7 @@ body {
     color: rgb(138, 42, 109);
     margin-top: auto;
     text-align: center;
+    text-decoration: none;
     padding: 5px;
 }
 
