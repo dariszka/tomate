@@ -18,11 +18,11 @@ body {
     flex-direction: column;
 }
 
-#settings{
+#settings {
     align-self: flex-end;
 }
 
-#icon{
+#icon {
     margin: 25px 25px 0px 0px;
     width: 35px;
     height: 35px;
@@ -33,6 +33,24 @@ body {
     transform: rotate(180deg)
 }
 
+.menu {
+    display: none;
+    min-height: 100%;
+    min-width: 100%;
+    
+}
+
+.showMenu {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    justify-content: center;
+    text-align: center;
+    font-size: 25px;
+    box-shadow: 30px 30px  rgb(43, 0, 28);
+
+}
 
 #content {
     align-self: center;
@@ -44,16 +62,32 @@ body {
 }
 
 #greeting {
-    font-size: 30px;
+    font-size: 45px;
+    text-align: center;
 }
 
-#timer{
+#box {
     border: 1px solid black;
     width: 500px ;
     min-height: 500px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-#footer{
+.timer {
+    min-height: 100%;
+    min-width: 100%;
+    background-color: rgb(193, 35, 161);
+}
+
+.hideTimer {
+    display: none;
+}
+
+#footer {
     background-color: rgb(42, 18, 38);
     color: rgb(138, 42, 109);
     margin-top: auto;
