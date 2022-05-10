@@ -1,4 +1,5 @@
-const icon = document.querySelector('#icon');
+const container = document.querySelector('#container');
+const icon = document.querySelector('.icon');
 const settings = document.querySelector('#settings');
 const menu = document.querySelector('.menu');
 const box = document.querySelector('#box');
@@ -8,16 +9,24 @@ createSettingsContents()
 
 icon.addEventListener('click', clickOnSettings)
 
+switchThemes()
+
+///////////////////////////////////////////////
+
+
+
+
 
 
 //////////////////////////////////////////////
 
+
 function createSettingsContents() {
 
-const mode = document.createElement('div');
-    mode.classList.add('mode')
-    mode.textContent = 'dark/light'
-    menu.appendChild(mode)
+const theme = document.createElement('div');
+    theme.classList.add('theme')
+    theme.innerHTML = "<span id='light'>Light</span><span>/</span><span id='dark'>Dark</span>"
+    menu.appendChild(theme)
 
 const workTime = document.createElement('div');
     workTime.classList.add('work')
@@ -46,4 +55,32 @@ function clickOnSettings() {
 
 } 
 
+function switchThemes() {
+    const dark = document.querySelector('#dark');
+    const light = document.querySelector('#light');
+
+    light.addEventListener('click', switchThemeToLight)
+
+        function switchThemeToLight() {
+            container.classList.add('light') 
+            container.classList.remove('dark')
+            
+            icon.classList.remove('darkIcon')
+            
+            light.classList.add('clicked')
+            dark.classList.remove('clicked')
+        }
+
+    dark.addEventListener('click', switchThemeToDark)
+
+        function switchThemeToDark() {
+            container.classList.add('dark') 
+            container.classList.remove('light')
+            
+            icon.classList.add('darkIcon')
+            
+            dark.classList.add('clicked')
+            light.classList.remove('clicked')
+        }
+}
 

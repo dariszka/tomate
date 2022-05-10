@@ -22,22 +22,26 @@ body {
     align-self: flex-end;
 }
 
-#icon {
+.icon {
     margin: 25px 25px 0px 0px;
     width: 35px;
     height: 35px;
-    transition: 0.5s;
+    filter: brightness(0) saturate(100%) invert(6%) sepia(69%) saturate(2606%) hue-rotate(298deg) brightness(87%) contrast(109%);
+}
+
+.darkIcon {
+    filter: brightness(0) saturate(100%) invert(34%) sepia(13%) saturate(2271%) hue-rotate(256deg) brightness(90%) contrast(84%);
 }
 
 .rotate {
-    transform: rotate(180deg)
+    transform: rotate(180deg);
+    transition: 0.5s;
 }
 
 .menu {
     display: none;
     min-height: 100%;
     min-width: 100%;
-    
 }
 
 .showMenu {
@@ -45,12 +49,25 @@ body {
     flex-direction: column;
     gap: 15px;
 
+
     justify-content: center;
     text-align: center;
     font-size: 25px;
     box-shadow: 30px 30px  rgb(43, 0, 28);
 
 }
+
+.clicked {
+    animation-duration: 0.7s;
+    animation-name: biggify;
+
+}
+
+@keyframes biggify {
+    0% {font-size: 25px;}
+    50% {font-size: 30px;}
+    100%   {font-size: 25px;}
+  }
 
 #content {
     align-self: center;
@@ -70,7 +87,7 @@ body {
     border: 1px solid black;
     width: 500px ;
     min-height: 500px;
-    overflow: hidden;
+    /* overflow: hidden; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -99,9 +116,14 @@ body {
 .light {
     background-color: rgb(175, 115, 167);
     color: rgb(43, 0, 28);
+    
+    transition: 1.5s;
 }
 
 .dark {
-    background-color: rgb(43, 0, 28);
-    color: rgb(175, 115, 167);
+    background-color: rgb(74, 14, 53);
+    color: rgb(134, 71, 126);
+    
+    transition: 1.5s;
 }
+
