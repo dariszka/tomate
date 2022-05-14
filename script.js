@@ -5,7 +5,7 @@ const menu = document.querySelector('.menu');
 const box = document.querySelector('#box');
 const timer = document.querySelector('.timer')
 
-createSettingsContents()
+
 
 icon.addEventListener('click', clickOnSettings)
 
@@ -68,29 +68,7 @@ timer.onclick = function () {
 //////////////////////////////////////////////
 
 
-function createSettingsContents() {
 
-const theme = document.createElement('div');
-    theme.classList.add('theme')
-    theme.innerHTML = "<span id='light'>Light</span><span>/</span><span id='dark'>Dark</span>"
-    menu.appendChild(theme)
-
-const workTimeDiv = document.createElement('div');
-    workTimeDiv.classList.add('work')
-    workTimeDiv.textContent = 'work time: '
-    menu.appendChild(workTimeDiv)
-
-const breakTimeDiv = document.createElement('div');
-    breakTimeDiv.classList.add('break')
-    breakTimeDiv.textContent = 'break time: '
-    menu.appendChild(breakTimeDiv)
-
-const progress = document.createElement('div');
-    progress.classList.add('progress')
-    progress.textContent = '/goal'
-    menu.appendChild(progress)
-
-}
 
 function clickOnSettings() {
     icon.classList.toggle('rotate')
