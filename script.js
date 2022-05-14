@@ -13,7 +13,54 @@ switchThemes()
 
 ///////////////////////////////////////////////
 
+function startTimer(duration, display) {
 
+    let start = Date.now(),
+            difference,
+            //hours,
+            minutes, 
+            seconds;
+
+    function timer() {
+        difference = duration - (((Date.now() - start) / 1000) | 0);
+
+        minutes = (difference / 60) | 0;
+        seconds = (difference % 60) | 0;
+
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+
+        display.textContent = minutes + ':' + seconds
+
+        if (difference <= 0) {
+            start = Date.now() + 1000;
+        }
+
+        // if (difference > 3600) {
+        //    hours = () | 0;
+
+        //    display.textContent = hours + minutes + ':' + seconds
+        // }
+    };
+    timer()
+    setInterval(timer, 1000);
+}
+
+
+let workTime = 5;
+
+window.onload = function () {
+    workTime = workTime < 10 ? '0' + workTime : workTime;
+    
+    timer.textContent = workTime + ':00'
+}
+
+timer.onclick = function () {
+    let convertedWorkTime = workTime * 60
+        display = document.querySelector('.timer');
+    startTimer(convertedWorkTime, display);
+};
 
 
 
@@ -28,15 +75,15 @@ const theme = document.createElement('div');
     theme.innerHTML = "<span id='light'>Light</span><span>/</span><span id='dark'>Dark</span>"
     menu.appendChild(theme)
 
-const workTime = document.createElement('div');
-    workTime.classList.add('work')
-    workTime.textContent = 'work time: '
-    menu.appendChild(workTime)
+const workTimeDiv = document.createElement('div');
+    workTimeDiv.classList.add('work')
+    workTimeDiv.textContent = 'work time: '
+    menu.appendChild(workTimeDiv)
 
-const breakTime = document.createElement('div');
-    breakTime.classList.add('break')
-    breakTime.textContent = 'break time: '
-    menu.appendChild(breakTime)
+const breakTimeDiv = document.createElement('div');
+    breakTimeDiv.classList.add('break')
+    breakTimeDiv.textContent = 'break time: '
+    menu.appendChild(breakTimeDiv)
 
 const progress = document.createElement('div');
     progress.classList.add('progress')

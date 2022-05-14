@@ -3,6 +3,30 @@
 	src: url('azonix.woff') format('woff');
 }
 
+.light ::selection {
+    background-color:rgb(43, 0, 28);
+    color: rgb(175, 115, 167);
+  }
+
+.dark ::selection {
+    background-color: rgb(134, 71, 126);
+    color: rgb(74, 14, 53);
+}
+
+.light {
+    background-color: rgb(175, 115, 167);
+    color: rgb(43, 0, 28);
+    
+    transition: 1.5s;
+}
+
+.dark {
+    background-color: rgb(74, 14, 53);
+    color: rgb(134, 71, 126);
+    
+    transition: 1.5s;
+}
+
 html {
     height: 100%;
 }
@@ -27,6 +51,7 @@ body {
     width: 35px;
     height: 35px;
     filter: brightness(0) saturate(100%) invert(6%) sepia(69%) saturate(2606%) hue-rotate(298deg) brightness(87%) contrast(109%);
+    transition: 0.5s;
 }
 
 .darkIcon {
@@ -48,7 +73,6 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
-
 
     justify-content: center;
     text-align: center;
@@ -97,7 +121,11 @@ body {
 .timer {
     min-height: 100%;
     min-width: 100%;
-    background-color: rgb(193, 35, 161);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 150px;
+    
 }
 
 .hideTimer {
@@ -113,17 +141,5 @@ body {
     padding: 5px;
 }
 
-.light {
-    background-color: rgb(175, 115, 167);
-    color: rgb(43, 0, 28);
-    
-    transition: 1.5s;
-}
 
-.dark {
-    background-color: rgb(74, 14, 53);
-    color: rgb(134, 71, 126);
-    
-    transition: 1.5s;
-}
 
