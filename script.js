@@ -3,27 +3,39 @@ const icon = document.querySelector('.icon');
 const settings = document.querySelector('#settings');
 const menu = document.querySelector('.menu');
 const box = document.querySelector('#box');
-const timer = document.querySelector('.timer')
-
+const timerDisplay = document.querySelector('.timer')
 
 
 icon.addEventListener('click', clickOnSettings)
 
 switchThemes()
 
+let config = {
+    workTimeDuration: 25,
+    isInitialRun: true
+}
+
 ///////////////////////////////////////////////
 
-function startTimer(duration, display) {
+let interval;
+let secondsPassedSincePause = 0;
 
-    let start = Date.now(),
-            difference,
-            //hours,
-            minutes, 
-            seconds;
+function setUpTimer(duration, display) {
 
-    function timer() {
-        difference = duration - (((Date.now() - start) / 1000) | 0);
+    let start = Date.now();
+    let isPaused = false;
+    let difference,
+        //hours,
+        minutes, 
+        seconds;
 
+    
+    function runTimer() {
+            difference = (duration - secondsPassedSincePause) - ((Date.now() - start) / 1000);
+            updateDisplay(difference)
+    }
+
+    function updateDisplay(difference) {
         minutes = (difference / 60) | 0;
         seconds = (difference % 60) | 0;
 
@@ -34,32 +46,39 @@ function startTimer(duration, display) {
         display.textContent = minutes + ':' + seconds
 
         if (difference <= 0) {
-            start = Date.now() + 1000;
+            start = Date.now() + 2000;
         }
+    }
 
-        // if (difference > 3600) {
-        //    hours = () | 0;
+    if (!interval) {
+       interval = setInterval(runTimer, 1000);
+    } else {
+        secondsPassedSincePause = duration - ((Date.now() - start) / 1000);
+        clearInterval(interval);
+        interval = false;
+    } 
 
-        //    display.textContent = hours + minutes + ':' + seconds
-        // }
-    };
-    timer()
-    setInterval(timer, 1000);
 }
 
 
-let workTime = 5;
+
+let workTimeDuration = config.workTimeDuration;
 
 window.onload = function () {
-    workTime = workTime < 10 ? '0' + workTime : workTime;
+    workTimeDuration = workTimeDuration < 10 ? '0' + workTimeDuration : workTimeDuration;
     
-    timer.textContent = workTime + ':00'
+    timerDisplay.textContent = workTimeDuration + ':00'
 }
 
-timer.onclick = function () {
-    let convertedWorkTime = workTime * 60
-        display = document.querySelector('.timer');
-    startTimer(convertedWorkTime, display);
+
+
+timerDisplay.onclick = function () {
+    let convertedWorkTime = workTimeDuration * 60
+
+    // if (config.isInitialRun === true) {
+        setUpTimer(convertedWorkTime, timerDisplay);
+        // config.isInitialRun = false;
+    
 };
 
 
@@ -67,16 +86,13 @@ timer.onclick = function () {
 
 //////////////////////////////////////////////
 
-
-
-
 function clickOnSettings() {
     icon.classList.toggle('rotate')
 
     menu.classList.toggle('showMenu')
     box.classList.toggle('showMenu')
 
-    timer.classList.toggle('hideTimer')
+    timerDisplay.classList.toggle('hideTimer')
 
 } 
 
