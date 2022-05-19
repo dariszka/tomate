@@ -1,6 +1,6 @@
 [x] timer default 25
 [x] jak sie nacisnie timer to zaczyna odliczac do zera od wartosci poczatkowej 
-[] Jak sie nacisnie znowu timer to sie wylacza timer.
+[x] Jak sie nacisnie znowu timer to sie wylacza timer.
 [] Jak sie podwójnie naciśnie to sie wlacza break timer.
 
 [] Naliczanie powtórzeń. 
