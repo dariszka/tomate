@@ -5,7 +5,6 @@ const menu = document.querySelector('.menu');
 const box = document.querySelector('#box');
 const timerDisplay = document.querySelector('.timer')
 
-
 let workTimeDuration = 1  
 
 window.onload = function () {
@@ -33,29 +32,29 @@ function handleTimerClick(workTimeDuration) {
         }
         
         startTime = Date.now()
-        endTime = (startTime + duration)
+        endTime = startTime + duration
+        console.log(duration/1000)
         
         interval = setInterval(function(){
-            let remainingTime = ((endTime - Date.now()) / 1000);
-            updateTimerDisplay(remainingTime, timerDisplay)
-            //console.log(remainingTime)
+            let remainingTime = (endTime - Date.now());
+            updateTimerDisplay(remainingTime/1000, timerDisplay)
+            console.log(remainingTime/1000)
         }, 1000)
                
     } else {
         clearInterval(interval);
         interval = false;
-        duration = endTime - Date.now()
+        duration = Math.ceil((endTime - Date.now())/1000)*1000
     }
 }
 
 
 function updateTimerDisplay(remainingTime, display) {
     minutes = (remainingTime / 60) | 0;
-    seconds = (remainingTime % 60) | 0;
+    seconds = Math.ceil((remainingTime) % 60 ) | 0;
 
         minutes = minutes < 10 ? '0' + minutes : minutes;
         seconds = seconds < 10 ? '0' + seconds : seconds;
-
 
         display.textContent = minutes + ':' + seconds
 
