@@ -1,7 +1,9 @@
 [x] timer default 25
 [x] jak sie nacisnie timer to zaczyna odliczac do zera od wartosci poczatkowej 
 [x] Jak sie nacisnie znowu timer to sie wylacza timer.
-[] Jak sie podwójnie naciśnie to sie wlacza break timer.
+[] zatrzymuje się na 0
+[] Jak sie podwójnie naciśnie to sie pokazuje break timer.
+[] dopiero jak sie włączy break timer to sie resetuje work timer
 
 [] Naliczanie powtórzeń. 
 [] zaby themes sie powiekszaly za kazdym razem jak sie klika je.
