@@ -8,8 +8,7 @@ function clickOnSettings() {
     menu.classList.toggle('showMenu')
     box.classList.toggle('showMenu')
 
-    timerDisplay.classList.toggle('hideTimer')
-
+    timerDisplays.classList.toggle('hideTimer')
 } 
 
 function switchThemes() {

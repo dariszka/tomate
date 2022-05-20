@@ -123,14 +123,15 @@ input {
     border: 1px solid black;
     width: 500px ;
     min-height: 500px;
-    /* overflow: hidden; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.timer {
+.workTimer,
+.breakTimer,
+.longBreakTimer {
     min-height: 100%;
     min-width: 100%;
     display: flex;

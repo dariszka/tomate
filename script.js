@@ -3,17 +3,23 @@ const icon = document.querySelector('.icon');
 const settings = document.querySelector('#settings');
 const menu = document.querySelector('.menu');
 const box = document.querySelector('#box');
-const timerDisplay = document.querySelector('.timer')
+const timerDisplays = document.querySelector('.workTimer')
+const workTimerDisplay = document.querySelector('.workTimer')
+const breakTimerDisplay = document.querySelector('.breakTimer')
+const longBreakTimerDisplay = document.querySelector('.longBreakTimer')
 
-let workTimeDuration = 0.05 
+let workTimeDuration = 25
+let breakTimeDuration = 5
 
 window.onload = function () {
     workTimeDuration = workTimeDuration < 10 ? '0' + workTimeDuration : workTimeDuration;
-    timerDisplay.textContent = workTimeDuration + ':00'
+    workTimerDisplay.textContent = workTimeDuration + ':00'
+    breakTimerDisplay.classList.add('hideTimer')
+    longBreakTimerDisplay.classList.add('hideTimer')
 }
 
-timerDisplay.onclick = function () {
-    handleTimerClick(workTimeDuration * 60, timerDisplay);
+workTimerDisplay.onclick = function () {
+    handleTimerClick(workTimeDuration * 60, workTimerDisplay);
 };
 
 let interval = false;
@@ -36,15 +42,12 @@ function handleTimerClick(workTimeDuration) {
         
         interval = setInterval(function(){
             let remainingTime = (endTime - Date.now());
-            updateTimerDisplay(remainingTime/1000, timerDisplay)
-            
-            if (remainingTime === 0) {
-            clearInterval(interval)
-        }
+            updateTimerDisplay(remainingTime/1000, workTimerDisplay)
+                
+                if (remainingTime === 0) {
+                clearInterval(interval)
+                }
         }, 1000)
-
-        
-               
     } else {
         clearInterval(interval);
         interval = false;
@@ -61,5 +64,4 @@ function updateTimerDisplay(remainingTime, display) {
         seconds = seconds < 10 ? '0' + seconds : seconds;
 
         display.textContent = minutes + ':' + seconds
-
 }
