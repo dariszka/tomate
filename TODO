@@ -2,8 +2,9 @@
 [x] jak sie nacisnie timer to zaczyna odliczac do zera od wartosci poczatkowej 
 [x] Jak sie nacisnie znowu timer to sie wylacza timer.
 [X] zatrzymuje się na 0
-[] Jak sie podwójnie naciśnie to sie pokazuje break timer.
+[x] Jak sie podwójnie naciśnie to sie pokazuje break timer.
 [] dopiero jak sie włączy break timer to sie resetuje work timer
+[x] jak sie potrójnie nacisnie to long break timer.
 
 [] Naliczanie powtórzeń. 
 [] zaby themes sie powiekszaly za kazdym razem jak sie klika je.
