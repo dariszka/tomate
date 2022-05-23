@@ -8,18 +8,20 @@ const workTimerDisplay = document.querySelector('.workTimer')
 const breakTimerDisplay = document.querySelector('.breakTimer')
 const longBreakTimerDisplay = document.querySelector('.longBreakTimer')
 
-let workTimeDuration = 25
-let breakTimeDuration = 5
+let workTimeDuration = 1
+let breakTimeDuration = 0.1
 let longBreakTimeDuration = 15
 
-let cycleDurations = [25, 5, 15]
+//let sessionDurations = [25, 5, 15]
 
 let interval = false;
 let endTime
 let startTime
 let isFirstRun = true
-let duration
+let duration = false
 let remainingTime
+let sessionCount = 0
+let sessionDuration 
 
 window.onload = function () {
     workTimerDisplay.textContent = workTimeDuration < 10 ? '0' + workTimeDuration + ':00': workTimeDuration + ':00';
@@ -30,30 +32,16 @@ window.onload = function () {
 workTimerDisplay.onclick = function () {
     handleTimerClick(workTimeDuration, workTimerDisplay);
 };
-
-workTimerDisplay.ondblclick = function () {
-    breakTimerDisplay.classList.remove('hideTimer')
-    breakTimerDisplay.textContent  = breakTimeDuration < 10 ? '0' + breakTimeDuration + ':00' : breakTimeDuration + ':00';
-    
-    workTimerDisplay.classList.add('hideTimer')
-    longBreakTimerDisplay.classList.add('hideTimer')
-};
+workTimerDisplay.ondblclick = switchToBreakDisplay
 
 breakTimerDisplay.onclick = function () {
     handleTimerClick(breakTimeDuration, breakTimerDisplay);
 };
+breakTimerDisplay.ondblclick = switchToWorkDisplay
 
-breakTimerDisplay.ondblclick = function () {
-    workTimerDisplay.classList.remove('hideTimer')
-    
-    breakTimerDisplay.classList.add('hideTimer')
-    longBreakTimerDisplay.classList.add('hideTimer')
-}
-
-longBreakTimerDisplay.onclick = function () {
+longBreakTimerDisplay.onclick = function() {
     handleTimerClick(longBreakTimeDuration, longBreakTimerDisplay);
 };
-
 timerDisplays.addEventListener('click', (e) => {
     if (e.detail === 3) {
         if (longBreakTimerDisplay.classList.contains('hideTimer')) {
@@ -71,37 +59,69 @@ timerDisplays.addEventListener('click', (e) => {
     }
 });
 
-function handleTimerClick(cycleDuration, display) {
-      if(!interval){
-        if (isFirstRun) {
-            duration = cycleDuration * 60 * 1000
-            isFirstRun = false
+for (let i = 0; i < 10; i++) {
+    function handleTimerClick(sessionDuration, display) {
+        if(!interval){
+            
+            if (isFirstRun) {
+                duration = sessionDuration * 60 * 1000
+                isFirstRun = false
+            }
+            console.log(sessionDuration)
+            console.log(duration)
+          startTime = Date.now()
+          endTime = startTime + duration
+          
+          interval = setInterval(function(){
+              remainingTime = (endTime - Date.now());
+              if (remainingTime >= 0) {
+                  updateTimerDisplay(remainingTime/1000, display)
+                } else {
+                    clearInterval(interval)
+                    interval = false;
+                    updateTimerDisplay(sessionDuration*60, display)
+                    sessionCount++
+                    i++ 
+
+                    if (sessionDuration === workTimeDuration) {
+                        switchToBreakDisplay()
+                    } else {
+                        switchToWorkDisplay()
+                    }
+              } 
+            }, 1000)
+        } else {
+            clearInterval(interval);
+            interval = false;
+            duration = Math.ceil((endTime - Date.now())/1000)*1000
         }
-        
-        startTime = Date.now()
-        endTime = startTime + duration
-        
-        interval = setInterval(function(){
-            remainingTime = (endTime - Date.now());
-            updateTimerDisplay(remainingTime/1000, display)
-                
-                if (remainingTime === 0) {
-                clearInterval(interval)
-                }
-        }, 1000)
-    } else {
-        clearInterval(interval);
-        interval = false;
-        duration = Math.ceil((endTime - Date.now())/1000)*1000
     }
 }
 
-function updateTimerDisplay(remainingTime, display) {
+
+/////////////////////////////////////////   
+
+function updateTimerDisplay(remainingTime, display, sessionDuration) {
     minutes = (remainingTime / 60) | 0;
     seconds = Math.ceil((remainingTime) % 60 ) | 0;
+    
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    
+    display.textContent = minutes + ':' + seconds
+}
 
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        seconds = seconds < 10 ? '0' + seconds : seconds;
+function switchToBreakDisplay() {
+    breakTimerDisplay.classList.remove('hideTimer')
+    breakTimerDisplay.textContent  = breakTimeDuration < 10 ? '0' + breakTimeDuration + ':00' : breakTimeDuration + ':00';
+    
+    workTimerDisplay.classList.add('hideTimer')
+    longBreakTimerDisplay.classList.add('hideTimer')
+};
 
-        display.textContent = minutes + ':' + seconds
+function switchToWorkDisplay() {
+    workTimerDisplay.classList.remove('hideTimer')
+    
+    breakTimerDisplay.classList.add('hideTimer')
+    longBreakTimerDisplay.classList.add('hideTimer')
 }
