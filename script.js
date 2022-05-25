@@ -10,7 +10,7 @@ const longBreakTimerDisplay = document.querySelector('.longBreakTimer')
 
 let workTimeDuration = 5
 let breakTimeDuration = 1
-let longBreakTimeDuration = 15
+let longBreakTimeDuration = 15 
 
 let interval = false;
 let endTime
@@ -47,6 +47,8 @@ timerDisplays.addEventListener('click', (e) => {
             longBreakTimerDisplay.classList.remove('hideTimer')
             longBreakTimerDisplay.textContent  = longBreakTimeDuration < 10 ? '0' + longBreakTimeDuration + ':00' : longBreakTimeDuration + ':00';
             isFirstRun = true
+            clearInterval(interval)
+            interval = false;
 
             breakTimerDisplay.classList.add('hideTimer')
             workTimerDisplay.classList.add('hideTimer')
@@ -74,12 +76,11 @@ function handleTimerClick(sessionDuration, display) {
             } else {
                 clearInterval(interval)
                 interval = false;
-                updateTimerDisplay(sessionDuration*60, display)
                 
                 if (sessionDuration === workTimeDuration) {
                     switchToBreakDisplay()
                     sessionCount++
-                } else if (sessionDuration === breakTimeDuration) {
+                } else {
                     switchToWorkDisplay()
                 }
             } 
@@ -104,6 +105,8 @@ function updateTimerDisplay(remainingTime, display) {
 }
 
 function switchToBreakDisplay() {
+    clearInterval(interval)
+    interval = false;
     breakTimerDisplay.textContent = breakTimeDuration < 10 ? '0' + breakTimeDuration + ':00' : breakTimeDuration + ':00';
     breakTimerDisplay.classList.remove('hideTimer')
     isFirstRun = true
@@ -113,6 +116,8 @@ function switchToBreakDisplay() {
 };
 
 function switchToWorkDisplay() {
+    clearInterval(interval)
+    interval = false;
     workTimerDisplay.textContent = workTimeDuration < 10 ? '0' + workTimeDuration + ':00': workTimeDuration + ':00';
     workTimerDisplay.classList.remove('hideTimer')
     isFirstRun = true
