@@ -74,17 +74,26 @@
                 <span id='light'>Light</span> <span>/</span> <span id='dark'>Dark</span>
                </div>
                <div>sound: <span class="sound"><span class="on">on</span> <span class="off hide">off</span> </span></div>
-               <div class="work">
-                   work time: <input name="workTime" id="workTime" type="number" value="25"><br>
+               <div class="work input">
+                   work time: 
+                   <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
+                   <input class="workTime input" type="number" min="1" value="25">
+                   <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
                 </div> 
-               <div class="break">
-                   break time: <input name="breakTime" type="number" value="5">
+               <div class="break input">
+                   break time: 
+                   <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"> </button>
+                   <input class="breakTime input" type="number" min="1" value="5">
+                   <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"> </button>
                 </div> 
-                <div class="longBreak">
-                    long break time: <input name="longBreakTime" type="number" value="15">
-                 </div> 
+                <div class="longBreak input">
+                    long break time: 
+                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
+                    <input class="longBreakTime input" type="number" min="1" value="15">
+                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                </div> 
                <div class="goal">
-                   goal4today: <input class="goalToday" type="number" value="6">
+                   goal4today: <input class="goalToday" type="number" min="1" value="6">
                 </div> 
                <div class="progress"></div>
             </div>  

@@ -6,7 +6,7 @@
 .light ::selection {
     background-color:rgb(43, 0, 28);
     color: rgb(175, 115, 167);
-  }
+}
 
 .dark ::selection {
     background-color: rgb(134, 71, 126);
@@ -22,7 +22,7 @@
 
 .dark {
     background-color: rgb(74, 14, 53);
-    color: rgb(134, 71, 126);
+    color: rgb(175, 115, 167);
     
     transition: 1.5s;
 }
@@ -55,7 +55,7 @@ body {
 }
 
 .darkIcon {
-    filter: brightness(0) saturate(100%) invert(34%) sepia(13%) saturate(2271%) hue-rotate(256deg) brightness(90%) contrast(84%);
+    filter: brightness(0) saturate(100%) invert(55%) sepia(13%) saturate(1175%) hue-rotate(257deg) brightness(92%) contrast(90%);
 }
 
 .rotate {
@@ -85,21 +85,52 @@ input[type="number"] {
        -moz-appearance: textfield;
             appearance: textfield;
   }
-  input[type=number]::-webkit-inner-spin-button, 
-  input[type=number]::-webkit-outer-spin-button { 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
     -webkit-appearance: none;
-  }
+}
 
 input {
     width: 40px;
     padding: 5px;
     text-align: center;
     font-family: "azonix";
-    font-size: 25px;
+    font-size: 20px;
     border: 0px solid;
-    background-color: black;
-    color: palevioletred;
+    background-color: rgb(43, 0, 28);
+    color: rgb(175, 115, 167);
     border-radius: 5px;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 5px;
+}
+
+.input button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.input button:before,
+.input button:after {
+    position: absolute;
+    content: '';
+    width: 12px;
+    height: 3px;
+    background-color: rgb(43, 0, 28);
+    transform: translate(-50%, -50%);
+}
+
+
+.input button.plus:after {
+    transform: translate(-50%, -50%) rotate(90deg);
 }
 
 .clicked {
