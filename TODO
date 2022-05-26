@@ -3,8 +3,13 @@
 [x] Jak sie nacisnie znowu timer to sie wylacza timer.
 [X] zatrzymuje się na 0
 [x] Jak sie podwójnie naciśnie to sie pokazuje break timer.
-[] dopiero jak sie włączy break timer to sie resetuje work timer
+[x] dopiero jak sie włączy break timer to sie resetuje work timer
 [x] jak sie potrójnie nacisnie to long break timer.
 
-[] Naliczanie powtórzeń. 
-[] zaby themes sie powiekszaly za kazdym razem jak sie klika je.
+[x] Naliczanie powtórzeń. 
+[x] zaby themes sie powiekszaly za kazdym razem jak sie klika je.
+
+[]user zmienia długość sesji
+[]ładny wygląd inputów
+[]dźwięki jak się kończy (dodaj 3 przynajmniej) jeden takie fajne magiczne dzwoneczki
+[]środkują się powitanie i timer, powitanie znika na klikniecie settings

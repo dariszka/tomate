@@ -6,12 +6,8 @@ function clickOnSettings() {
     icon.classList.toggle('rotate')
 
     menu.classList.toggle('showMenu')
-    box.classList.toggle('showMenu')
-
-    timerDisplays.classList.toggle('hideTimer')
+    centralDisplay.classList.toggle('hide')
 } 
-
-let timeout 
 
 function switchThemes() {
     const dark = document.querySelector('#dark');
@@ -45,3 +41,8 @@ function switchThemes() {
             }, 700)
         }
 }
+
+const progress = document.querySelector('.progress')
+const goalToday = document.querySelector('.goalToday').nodeValue
+
+progress.textContent = sessionCount + '/' + goalToday

@@ -65,20 +65,19 @@ body {
 
 .menu {
     display: none;
-    min-height: 100%;
-    min-width: 100%;
 }
 
 .showMenu {
+    width: 500px ;
+    min-height: 500px; 
     display: flex;
     flex-direction: column;
     gap: 15px;
-
+    border: 1px solid rgb(43, 0, 28);
     justify-content: center;
     text-align: center;
     font-size: 25px;
     box-shadow: 30px 30px  rgb(43, 0, 28);
-
 }
 
 input {
@@ -96,37 +95,27 @@ input {
 .clicked {
     animation-duration: 0.7s;
     animation-name: biggify;
-
 }
 
 @keyframes biggify {
     0% {font-size: 25px;}
     50% {font-size: 30px;}
     100%   {font-size: 25px;}
-  }
+}
 
 #content {
-    align-self: center;
     margin: auto;
+}
+
+.centralDisplay {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 50px;
+    gap: 60px;
 }
 
 #greeting {
     font-size: 45px;
     text-align: center;
-}
-
-#box {
-    border: 1px solid black;
-    width: 500px ;
-    min-height: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .workTimer,
@@ -140,7 +129,7 @@ input {
     font-size: 150px;
 }
 
-.hideTimer {
+.hide {
     display: none;
 }
 
@@ -152,6 +141,3 @@ input {
     text-decoration: none;
     padding: 5px;
 }
-
-
-
