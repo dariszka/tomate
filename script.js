@@ -7,13 +7,15 @@ const timerDisplays = document.querySelector('.timerDisplays')
 const workTimerDisplay = document.querySelector('.workTimer')
 const breakTimerDisplay = document.querySelector('.breakTimer')
 const longBreakTimerDisplay = document.querySelector('.longBreakTimer')
+const progress = document.querySelector('.progress')
+const goalToday = document.querySelector('.goalToday').value
 
 const soundOn = document.querySelector('.on')
 const soundOff = document.querySelector('.off')
 const sound = document.querySelector('.sound')
 const audio = document.querySelector('.audio')
 
-let workTimeDuration = 0.05
+let workTimeDuration = 25
 let breakTimeDuration = 5
 let longBreakTimeDuration = 15 
 
@@ -86,6 +88,7 @@ function handleTimerClick(sessionDuration, display) {
                 if (sessionDuration === workTimeDuration) {
                     switchToBreakDisplay()
                     sessionCount++
+                    progress.textContent = sessionCount + '/' + goalToday
                 } else {
                     switchToWorkDisplay()
                 }
