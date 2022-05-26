@@ -88,7 +88,7 @@ function handleTimerClick(sessionDuration, display) {
                 if (sessionDuration === workTimeDuration) {
                     switchToBreakDisplay()
                     sessionCount++
-                    progress.textContent = sessionCount + '/' + goalToday
+                    trackProgress(sessionCount)
                 } else {
                     switchToWorkDisplay()
                 }
@@ -99,6 +99,17 @@ function handleTimerClick(sessionDuration, display) {
         interval = false;
         duration = Math.ceil((endTime - Date.now())/1000)*1000
     }
+}
+
+function trackProgress(sessionCount) {
+    if (sessionCount == goalToday) {
+        progress.textContent ='congratzz u finished ur goal4today'
+    } else if (sessionCount >= goalToday) {
+        progress.innerHTML = 'u kinda slay,'+ '<br />' + 'u did ' + (sessionCount - goalToday) + ' more than ur goal'
+    } else {
+        progress.textContent = sessionCount + '/' + goalToday
+    }
+
 }
 
 function updateTimerDisplay(remainingTime, display) {
@@ -142,3 +153,4 @@ function playSound() {
         }, 6120)
     }
 }
+
