@@ -46,4 +46,9 @@ function switchThemes() {
 function switchSoundOnOff() {
     soundOn.classList.toggle('hide')
     soundOff.classList.toggle('hide')
+
+    sound.classList.add('clicked') 
+    setTimeout(function () {
+        sound.classList.remove('clicked')
+    }, 700)
 }
