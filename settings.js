@@ -1,6 +1,12 @@
 icon.addEventListener('click', clickOnSettings)
+sound.addEventListener('click', switchSoundOnOff)
 
 switchThemes()
+
+const progress = document.querySelector('.progress')
+const goalToday = document.querySelector('.goalToday').nodeValue
+
+progress.textContent = sessionCount + '/' + goalToday
 
 function clickOnSettings() {
     icon.classList.toggle('rotate')
@@ -42,7 +48,7 @@ function switchThemes() {
         }
 }
 
-const progress = document.querySelector('.progress')
-const goalToday = document.querySelector('.goalToday').nodeValue
-
-progress.textContent = sessionCount + '/' + goalToday
+function switchSoundOnOff() {
+    soundOn.classList.toggle('hide')
+    soundOff.classList.toggle('hide')
+}

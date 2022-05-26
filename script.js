@@ -8,7 +8,12 @@ const workTimerDisplay = document.querySelector('.workTimer')
 const breakTimerDisplay = document.querySelector('.breakTimer')
 const longBreakTimerDisplay = document.querySelector('.longBreakTimer')
 
-let workTimeDuration = 25
+const soundOn = document.querySelector('.on')
+const soundOff = document.querySelector('.off')
+const sound = document.querySelector('.sound')
+const audio = document.querySelector('.audio')
+
+let workTimeDuration = 0.05
 let breakTimeDuration = 5
 let longBreakTimeDuration = 15 
 
@@ -76,7 +81,8 @@ function handleTimerClick(sessionDuration, display) {
             } else {
                 clearInterval(interval)
                 interval = false;
-                
+                playSound()
+
                 if (sessionDuration === workTimeDuration) {
                     switchToBreakDisplay()
                     sessionCount++
@@ -91,8 +97,6 @@ function handleTimerClick(sessionDuration, display) {
         duration = Math.ceil((endTime - Date.now())/1000)*1000
     }
 }
-
-/////////////////////////////////////////   
 
 function updateTimerDisplay(remainingTime, display) {
     minutes = (remainingTime / 60) | 0;
@@ -124,4 +128,14 @@ function switchToWorkDisplay() {
 
     breakTimerDisplay.classList.add('hide')
     longBreakTimerDisplay.classList.add('hide')
+}
+
+function playSound() {
+    if (soundOff.classList.contains('hide')) {
+        audio.play()
+        setTimeout(function() {  
+            audio.pause();
+            audio.currentTime = 0;
+        }, 6120)
+    }
 }
