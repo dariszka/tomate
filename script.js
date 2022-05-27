@@ -12,7 +12,6 @@ const goalToday = document.querySelector('.goalToday')
 const timeWorkedDiv = document.querySelector('.timeWorked')
 const sessionsWorkedDiv = document.querySelector('.sessionsWorked') 
 
-
 const soundOn = document.querySelector('.on')
 const soundOff = document.querySelector('.off')
 const sound = document.querySelector('.sound')
@@ -113,13 +112,26 @@ function handleTimerClick(sessionDuration, display) {
 }
 
 function updateTimerDisplay(remainingTime, display) {
-    minutes = (remainingTime / 60) | 0;
-    seconds = Math.ceil((remainingTime) % 60 ) | 0;
-    
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
-    
-    display.textContent = minutes + ':' + seconds
+
+    if (remainingTime > 60){
+        hours = Math.floor(remainingTime / 3600) 
+        minutes = ((remainingTime / 60) % 60) | 0
+        seconds = Math.ceil((remainingTime) % 60) | 0;
+
+        hours = hours < 10 ? '0' + hours : hours;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        display.textContent = hours + ':' + minutes + ':' + seconds
+    } else {
+        minutes = (remainingTime / 60) | 0;
+        seconds = Math.ceil((remainingTime) % 60 ) | 0;
+        
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+        
+        display.textContent = minutes + ':' + seconds
+    }
 }
 
 function switchToBreakDisplay() {
