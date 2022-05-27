@@ -6,6 +6,10 @@ switchThemes()
 function clickOnSettings() {
     icon.classList.toggle('rotate')
 
+    workTimerDisplay.textContent = workTimeDuration.value < 10 ? '0' + workTimeDuration.value + ':00': workTimeDuration.value + ':00';
+    breakTimerDisplay.textContent = breakTimeDuration.value < 10 ? '0' + breakTimeDuration.value + ':00' : breakTimeDuration.value + ':00';
+    longBreakTimerDisplay.textContent  = longBreakTimeDuration.value < 10 ? '0' + longBreakTimeDuration.value + ':00' : longBreakTimeDuration.value + ':00';
+    
     menu.classList.toggle('showMenu')
     centralDisplay.classList.toggle('hide')
 } 
