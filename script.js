@@ -41,6 +41,11 @@ window.onload = function () {
     longBreakTimerDisplay.classList.add('hide')
 }
 
+window.addEventListener('beforeunload', function (e) {
+    e.preventDefault();
+    e.returnValue = '';
+});
+
 workTimerDisplay.onclick = function () {
     handleTimerClick(workTimeDuration.value, workTimerDisplay);
 };
