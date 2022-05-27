@@ -1,3 +1,4 @@
+const title = document.querySelector('#title');
 const container = document.querySelector('#container');
 const icon = document.querySelector('.icon');
 const settings = document.querySelector('#settings');
@@ -122,8 +123,10 @@ function updateTimerDisplay(remainingTime, display) {
         
         if (hours != 0) {
             display.textContent = hours + ':' + minutes + ':' + seconds
+            title.textContent = hours + ':' + minutes + ':' + seconds + ' left babez 🙈'
         } else {
             display.textContent = minutes + ':' + seconds
+            title.textContent = minutes + ':' + seconds + ' left babez 🙈'
         }
 }
 
