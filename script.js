@@ -28,6 +28,10 @@ let remainingTime
 let sessionCount = 0
 let sessionDuration 
 
+let previousTimeWorked = 0
+let totalTimeWorked = 0
+let convertedTotalTimeWorked
+
 window.onload = function () {
     workTimerDisplay.textContent = workTimeDuration.value < 10 ? '0' + workTimeDuration.value + ':00': workTimeDuration.value + ':00';
     breakTimerDisplay.classList.add('hide')
@@ -87,7 +91,7 @@ function handleTimerClick(sessionDuration, display) {
                 if (sessionDuration === workTimeDuration.value) {
                     switchToBreakDisplay()
                     sessionCount++
-                    trackProgress(sessionCount)
+                    trackProgress(sessionCount, sessionDuration)
                 } else {
                     switchToWorkDisplay()
                 }
@@ -142,7 +146,7 @@ function playSound() {
     }
 }
 
-function trackProgress(sessionCount) {
+function trackProgress(sessionCount, sessionDuration) {
     if (sessionCount == goalToday.value) {
         progress.textContent ='congratzz u finished ur goal4today'
     } else if (sessionCount >= goalToday.value) {
@@ -150,4 +154,30 @@ function trackProgress(sessionCount) {
     } else {
         progress.textContent = sessionCount + '/' + (goalToday.value)
     }
+
+    totalTimeWorked = previousTimeWorked + parseInt(sessionDuration) 
+    previousTimeWorked = totalTimeWorked
+
+        if ((totalTimeWorked % 60) == 0){
+            convertedTotalTimeWorked = totalTimeWorked + ' hours'
+        } else if (totalTimeWorked > 60){
+            convertedTotalTimeWorked = (totalTimeWorked/60) + ' hours and ' + (totalTimeWorked % 60) + ' minutes'
+        } else {
+            convertedTotalTimeWorked = totalTimeWorked + ' minutes'
+        } 
 }
+
+progress.addEventListener('dblclick', function () {
+        if (convertedTotalTimeWorked === undefined) {
+            return
+        }
+
+    let timeWorkedDiv = document.querySelector('.timeWorked')
+    let sessionsWorkedDiv = document.querySelector('.sessionsWorked') 
+
+    timeWorkedDiv.textContent = 'uve done ' + convertedTotalTimeWorked + ' of work btw'
+
+    timeWorkedDiv.classList.toggle('hide')
+    sessionsWorkedDiv.classList.toggle('hide')
+})
+
