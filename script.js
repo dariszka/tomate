@@ -62,7 +62,7 @@ timerDisplays.addEventListener('click', (e) => {
     if (e.detail === 3) {
         if (longBreakTimerDisplay.classList.contains('hide')) {
             longBreakTimerDisplay.classList.remove('hide')
-            longBreakTimerDisplay.textContent  = longBreakTimeDuration.value < 10 ? '0' + longBreakTimeDuration.value + ':00' : longBreakTimeDuration.value + ':00';
+            updateTimerDisplay(longBreakTimeDuration.value*60, longBreakTimerDisplay)
             isFirstRun = true
             clearInterval(interval)
             interval = false;
@@ -112,8 +112,6 @@ function handleTimerClick(sessionDuration, display) {
 }
 
 function updateTimerDisplay(remainingTime, display) {
-
-    if (remainingTime > 60){
         hours = Math.floor(remainingTime / 3600) 
         minutes = ((remainingTime / 60) % 60) | 0
         seconds = Math.ceil((remainingTime) % 60) | 0;
@@ -121,23 +119,18 @@ function updateTimerDisplay(remainingTime, display) {
         hours = hours < 10 ? '0' + hours : hours;
         minutes = minutes < 10 ? '0' + minutes : minutes;
         seconds = seconds < 10 ? '0' + seconds : seconds;
-
-        display.textContent = hours + ':' + minutes + ':' + seconds
-    } else {
-        minutes = (remainingTime / 60) | 0;
-        seconds = Math.ceil((remainingTime) % 60 ) | 0;
         
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        seconds = seconds < 10 ? '0' + seconds : seconds;
-        
-        display.textContent = minutes + ':' + seconds
-    }
+        if (hours != 0) {
+            display.textContent = hours + ':' + minutes + ':' + seconds
+        } else {
+            display.textContent = minutes + ':' + seconds
+        }
 }
 
 function switchToBreakDisplay() {
     clearInterval(interval)
     interval = false;
-    breakTimerDisplay.textContent = breakTimeDuration.value < 10 ? '0' + breakTimeDuration.value + ':00' : breakTimeDuration.value + ':00';
+    updateTimerDisplay(breakTimeDuration.value*60, breakTimerDisplay)
     breakTimerDisplay.classList.remove('hide')
     isFirstRun = true
 
@@ -148,7 +141,7 @@ function switchToBreakDisplay() {
 function switchToWorkDisplay() {
     clearInterval(interval)
     interval = false;
-    workTimerDisplay.textContent = workTimeDuration.value < 10 ? '0' + workTimeDuration.value + ':00': workTimeDuration.value + ':00';
+    updateTimerDisplay(workTimeDuration.value*60, workTimerDisplay)
     workTimerDisplay.classList.remove('hide')
     isFirstRun = true
     
