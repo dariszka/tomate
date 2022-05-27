@@ -18,6 +18,8 @@
 [x]zmienia się workTimerDisplay po zamknięciu ustawień
 [x]doubleclick na progress i pokazuje ile minut/godzin się zróbiło
 [x]alert ze jesli opuscisz strone to ci usunie progress
-[]jeśli powyżej 60 minut display godziny
+[x]jeśli powyżej 60 minut display godziny
+[x]display timer w tytule strony
+
 []po zmienieniu goala od razu sie aktualizuje session progress
-[]display timer w tytule strony
+[]jesli zmienie długość sesji jak runuje to mi się ustawia nowy timer i usuwa stary
