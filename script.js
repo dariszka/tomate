@@ -8,16 +8,16 @@ const workTimerDisplay = document.querySelector('.workTimer')
 const breakTimerDisplay = document.querySelector('.breakTimer')
 const longBreakTimerDisplay = document.querySelector('.longBreakTimer')
 const progress = document.querySelector('.progress')
-const goalToday = document.querySelector('.goalToday').value
+const goalToday = document.querySelector('.goalToday')
 
 const soundOn = document.querySelector('.on')
 const soundOff = document.querySelector('.off')
 const sound = document.querySelector('.sound')
 const audio = document.querySelector('.audio')
 
-let workTimeDuration = 25
-let breakTimeDuration = 5
-let longBreakTimeDuration = 15 
+let workTimeDuration = document.querySelector('.workTime')
+let breakTimeDuration = document.querySelector('.breakTime')
+let longBreakTimeDuration = document.querySelector('.longBreakTime')
 
 let interval = false;
 let endTime
@@ -27,32 +27,31 @@ let duration = false
 let remainingTime
 let sessionCount = 0
 let sessionDuration 
-let breakStarted = false
 
 window.onload = function () {
-    workTimerDisplay.textContent = workTimeDuration < 10 ? '0' + workTimeDuration + ':00': workTimeDuration + ':00';
+    workTimerDisplay.textContent = workTimeDuration.value < 10 ? '0' + workTimeDuration.value + ':00': workTimeDuration.value + ':00';
     breakTimerDisplay.classList.add('hide')
     longBreakTimerDisplay.classList.add('hide')
 }
 
 workTimerDisplay.onclick = function () {
-    handleTimerClick(workTimeDuration, workTimerDisplay);
+    handleTimerClick(workTimeDuration.value, workTimerDisplay);
 };
 workTimerDisplay.ondblclick = switchToBreakDisplay
 
 breakTimerDisplay.onclick = function () {
-    handleTimerClick(breakTimeDuration, breakTimerDisplay);
+    handleTimerClick(breakTimeDuration.value, breakTimerDisplay);
 };
 breakTimerDisplay.ondblclick = switchToWorkDisplay
 
 longBreakTimerDisplay.onclick = function() {
-    handleTimerClick(longBreakTimeDuration, longBreakTimerDisplay);
+    handleTimerClick(longBreakTimeDuration.value, longBreakTimerDisplay);
 };
 timerDisplays.addEventListener('click', (e) => {
     if (e.detail === 3) {
         if (longBreakTimerDisplay.classList.contains('hide')) {
             longBreakTimerDisplay.classList.remove('hide')
-            longBreakTimerDisplay.textContent  = longBreakTimeDuration < 10 ? '0' + longBreakTimeDuration + ':00' : longBreakTimeDuration + ':00';
+            longBreakTimerDisplay.textContent  = longBreakTimeDuration.value < 10 ? '0' + longBreakTimeDuration.value + ':00' : longBreakTimeDuration.value + ':00';
             isFirstRun = true
             clearInterval(interval)
             interval = false;
@@ -85,7 +84,7 @@ function handleTimerClick(sessionDuration, display) {
                 interval = false;
                 playSound()
 
-                if (sessionDuration === workTimeDuration) {
+                if (sessionDuration === workTimeDuration.value) {
                     switchToBreakDisplay()
                     sessionCount++
                     trackProgress(sessionCount)
@@ -101,17 +100,6 @@ function handleTimerClick(sessionDuration, display) {
     }
 }
 
-function trackProgress(sessionCount) {
-    if (sessionCount == goalToday) {
-        progress.textContent ='congratzz u finished ur goal4today'
-    } else if (sessionCount >= goalToday) {
-        progress.innerHTML = 'u kinda slay,'+ '<br />' + 'u did ' + (sessionCount - goalToday) + ' more than ur goal'
-    } else {
-        progress.textContent = sessionCount + '/' + goalToday
-    }
-
-}
-
 function updateTimerDisplay(remainingTime, display) {
     minutes = (remainingTime / 60) | 0;
     seconds = Math.ceil((remainingTime) % 60 ) | 0;
@@ -125,7 +113,7 @@ function updateTimerDisplay(remainingTime, display) {
 function switchToBreakDisplay() {
     clearInterval(interval)
     interval = false;
-    breakTimerDisplay.textContent = breakTimeDuration < 10 ? '0' + breakTimeDuration + ':00' : breakTimeDuration + ':00';
+    breakTimerDisplay.textContent = breakTimeDuration.value < 10 ? '0' + breakTimeDuration.value + ':00' : breakTimeDuration.value + ':00';
     breakTimerDisplay.classList.remove('hide')
     isFirstRun = true
 
@@ -136,10 +124,10 @@ function switchToBreakDisplay() {
 function switchToWorkDisplay() {
     clearInterval(interval)
     interval = false;
-    workTimerDisplay.textContent = workTimeDuration < 10 ? '0' + workTimeDuration + ':00': workTimeDuration + ':00';
+    workTimerDisplay.textContent = workTimeDuration.value < 10 ? '0' + workTimeDuration.value + ':00': workTimeDuration.value + ':00';
     workTimerDisplay.classList.remove('hide')
     isFirstRun = true
-
+    
     breakTimerDisplay.classList.add('hide')
     longBreakTimerDisplay.classList.add('hide')
 }
@@ -154,3 +142,12 @@ function playSound() {
     }
 }
 
+function trackProgress(sessionCount) {
+    if (sessionCount == goalToday.value) {
+        progress.textContent ='congratzz u finished ur goal4today'
+    } else if (sessionCount >= goalToday.value) {
+        progress.innerHTML = 'u kinda slay,'+ '<br />' + 'u did ' + (sessionCount - goalToday.value) + ' more than ur goal'
+    } else {
+        progress.textContent = sessionCount + '/' + (goalToday.value)
+    }
+}
