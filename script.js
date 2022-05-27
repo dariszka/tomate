@@ -9,6 +9,9 @@ const breakTimerDisplay = document.querySelector('.breakTimer')
 const longBreakTimerDisplay = document.querySelector('.longBreakTimer')
 const progress = document.querySelector('.progress')
 const goalToday = document.querySelector('.goalToday')
+const timeWorkedDiv = document.querySelector('.timeWorked')
+const sessionsWorkedDiv = document.querySelector('.sessionsWorked') 
+
 
 const soundOn = document.querySelector('.on')
 const soundOff = document.querySelector('.off')
@@ -148,32 +151,33 @@ function playSound() {
 
 function trackProgress(sessionCount, sessionDuration) {
     if (sessionCount == goalToday.value) {
-        progress.textContent ='congratzz u finished ur goal4today'
+        sessionsWorkedDiv.textContent ='congratzz u finished ur goal4today'
     } else if (sessionCount >= goalToday.value) {
-        progress.innerHTML = 'u kinda slay,'+ '<br />' + 'u did ' + (sessionCount - goalToday.value) + ' more than ur goal'
+        sessionsWorkedDiv.innerHTML = 'u kinda slay,'+ '<br />' + 'u did ' + (sessionCount - goalToday.value) + ' more than ur goal'
     } else {
-        progress.textContent = sessionCount + '/' + (goalToday.value)
+        sessionsWorkedDiv.textContent = sessionCount + '/' + (goalToday.value)
     }
 
     totalTimeWorked = previousTimeWorked + parseInt(sessionDuration) 
     previousTimeWorked = totalTimeWorked
 
-        if ((totalTimeWorked % 60) == 0){
-            convertedTotalTimeWorked = totalTimeWorked + ' hours'
+        if (totalTimeWorked == 60){
+            convertedTotalTimeWorked = (totalTimeWorked/60) + ' hour'
+        } else if ((totalTimeWorked % 60) == 0){
+            convertedTotalTimeWorked = (totalTimeWorked/60) + ' hours'
+        } else if (totalTimeWorked > 120){
+            convertedTotalTimeWorked = ((totalTimeWorked/60) | 0) + ' hours and ' + (totalTimeWorked % 60) + ' minutes'
         } else if (totalTimeWorked > 60){
-            convertedTotalTimeWorked = (totalTimeWorked/60) + ' hours and ' + (totalTimeWorked % 60) + ' minutes'
+            convertedTotalTimeWorked = ((totalTimeWorked/60) | 0) + ' hour and ' + (totalTimeWorked % 60) + ' minutes'
         } else {
             convertedTotalTimeWorked = totalTimeWorked + ' minutes'
         } 
 }
 
 progress.addEventListener('dblclick', function () {
-        if (convertedTotalTimeWorked === undefined) {
-            return
-        }
-
-    let timeWorkedDiv = document.querySelector('.timeWorked')
-    let sessionsWorkedDiv = document.querySelector('.sessionsWorked') 
+    if ((convertedTotalTimeWorked === undefined)||(totalTimeWorked === 0)) {
+        return
+    }
 
     timeWorkedDiv.textContent = 'uve done ' + convertedTotalTimeWorked + ' of work btw'
 

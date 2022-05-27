@@ -18,3 +18,5 @@
 []zmienia się workTimerDisplay po zamknięciu ustawień
 [x]doubleclick na progress i pokazuje ile minut/godzin się zróbiło
 []jeśli powyżej 60 minut display godziny
+[]display timer w tytule strony
+[]alert ze jesli opuscisz strone to ci usunie progress
