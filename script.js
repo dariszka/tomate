@@ -165,7 +165,7 @@ function playSound() {
 function trackProgress(sessionCount, sessionDuration) {
     if (sessionCount == goalToday.value) {
         sessionsWorkedDiv.textContent ='congratzz u finished ur goal4today'
-    } else if (sessionCount >= goalToday.value) {
+    } else if (sessionCount > goalToday.value) {
         sessionsWorkedDiv.innerHTML = 'u kinda slay,'+ '<br />' + 'u did ' + (sessionCount - goalToday.value) + ' more than ur goal'
     } else {
         sessionsWorkedDiv.textContent = sessionCount + '/' + (goalToday.value)
@@ -197,4 +197,3 @@ progress.addEventListener('dblclick', function () {
     timeWorkedDiv.classList.toggle('hide')
     sessionsWorkedDiv.classList.toggle('hide')
 })
-

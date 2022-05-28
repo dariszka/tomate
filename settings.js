@@ -6,6 +6,8 @@ switchThemes()
 function clickOnSettings() {
     icon.classList.toggle('rotate')
 
+    clearInterval(interval)
+    interval = false
     updateTimerDisplay(workTimeDuration.value*60, workTimerDisplay)
     updateTimerDisplay(longBreakTimeDuration.value*60, longBreakTimerDisplay)
     updateTimerDisplay(breakTimeDuration.value*60, breakTimerDisplay)
