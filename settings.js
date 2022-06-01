@@ -8,6 +8,8 @@ function clickOnSettings() {
 
     clearInterval(interval)
     interval = false
+    isFirstRun = true
+    
     updateTimerDisplay(workTimeDuration.value*60, workTimerDisplay)
     updateTimerDisplay(longBreakTimeDuration.value*60, longBreakTimerDisplay)
     updateTimerDisplay(breakTimeDuration.value*60, breakTimerDisplay)
