@@ -6,9 +6,9 @@ switchThemes()
 function clickOnSettings() {
     icon.classList.toggle('rotate')
 
-    clearInterval(interval)
-    interval = false
-    isFirstRun = true
+    // clearInterval(interval)
+    // interval = false
+    // isFirstRun = true
     
     updateTimerDisplay(workTimeDuration.value*60, workTimerDisplay)
     updateTimerDisplay(longBreakTimeDuration.value*60, longBreakTimerDisplay)
