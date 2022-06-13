@@ -46,6 +46,7 @@ window.addEventListener('beforeunload', function (e) {
     e.returnValue = '';
 });
 
+
 workTimerDisplay.onclick = function () {
     handleTimerClick(workTimeDuration.value, workTimerDisplay);
 };
@@ -115,13 +116,15 @@ function handleTimerClick(sessionDuration, display) {
 function updateTimerDisplay(remainingTime, display) {
         hours = Math.floor(remainingTime / 3600) 
         minutes = ((remainingTime / 60) % 60) | 0
-        seconds = Math.floor((remainingTime) % 60) | 0;
+        seconds = Math.round((remainingTime) % 60) | 0;
 
         hours = hours < 10 ? '0' + hours : hours;
         minutes = minutes < 10 ? '0' + minutes : minutes;
         seconds = seconds < 10 ? '0' + seconds : seconds;
 
-        console.log(seconds)
+        //failsafe for rounding errors
+        minutes = seconds === 60 ? (minutes + 1) : minutes;
+        seconds = seconds === 60 ? '00' : seconds;
         
         if (hours != 0) {
             display.textContent = hours + ':' + minutes + ':' + seconds
