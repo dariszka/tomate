@@ -46,12 +46,18 @@ window.addEventListener('beforeunload', function (e) {
     e.returnValue = '';
 });
 
-workTimerDisplay.onkeydown = (e) => {
-    if(e.which === 32){
+document.body.onkeyup = (e) => {
+    if((e.code === "Space") || (e.keyCode === 32)){
         e.preventDefault();
-        handleTimerClick()
+
+        if (!workTimerDisplay.classList.contains('hide')) {
+            handleTimerClick(workTimeDuration.value, workTimerDisplay)
+        } else if (!breakTimerDisplay.classList.contains('hide')) {
+            handleTimerClick(breakTimeDuration.value, breakTimerDisplay);
+        } else if (!longBreakTimerDisplay.classList.contains('hide')) {
+            handleTimerClick(longBreakTimeDuration.value, longBreakTimerDisplay);
+        }
     }
-    
 }
 
 workTimerDisplay.onclick = function () {
@@ -123,7 +129,7 @@ function handleTimerClick(sessionDuration, display) {
 function updateTimerDisplay(remainingTime, display) {
         hours = Math.floor(remainingTime / 3600) 
         minutes = (remainingTime / 60) % 60 | 0
-        seconds = Math.floor((remainingTime) % 60) | 0;
+        seconds = Math.round((remainingTime) % 60) | 0;
         
         //failsafe for new minute rounding errors
         minutes = seconds === 60 ? parseInt(minutes) + 1 : minutes;
