@@ -6,13 +6,12 @@ switchThemes()
 function clickOnSettings() {
     icon.classList.toggle('rotate')
 
-    // clearInterval(interval)
-    // interval = false
-    // isFirstRun = true
-    
-    updateTimerDisplay(workTimeDuration.value*60, workTimerDisplay)
-    updateTimerDisplay(longBreakTimeDuration.value*60, longBreakTimerDisplay)
-    updateTimerDisplay(breakTimeDuration.value*60, breakTimerDisplay)
+    //only shows changed values when timer isn't running
+    if (isFirstRun) {
+        updateTimerDisplay(workTimeDuration.value*60, workTimerDisplay)
+        updateTimerDisplay(longBreakTimeDuration.value*60, longBreakTimerDisplay)
+        updateTimerDisplay(breakTimeDuration.value*60, breakTimerDisplay)
+    }
 
     menu.classList.toggle('showMenu')
     centralDisplay.classList.toggle('hide')
