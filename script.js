@@ -129,12 +129,8 @@ function handleTimerClick(sessionDuration, display) {
 function updateTimerDisplay(remainingTime, display) {
         hours = Math.floor(remainingTime / 3600) 
         minutes = (remainingTime / 60) % 60 | 0
-        seconds = Math.round((remainingTime) % 60) | 0;
+        seconds = Math.round(remainingTime % 60 % 60) | 0;
         
-        //failsafe for new minute rounding errors
-        minutes = seconds === 60 ? parseInt(minutes) + 1 : minutes;
-        seconds = seconds === 60 ? '00' : seconds;
-
         hours = hours < 10 ? '0' + hours : hours;
         minutes = minutes < 10 ? '0' + minutes : minutes;
         seconds = seconds < 10 ? '0' + seconds : seconds;
