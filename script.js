@@ -13,8 +13,8 @@ const goalToday = document.querySelector('.goalToday')
 const timeWorkedDiv = document.querySelector('.timeWorked')
 const sessionsWorkedDiv = document.querySelector('.sessionsWorked') 
 
-const soundOn = document.querySelector('.on')
-const soundOff = document.querySelector('.off')
+const soundOn = document.querySelector('.soundOn')
+const soundOff = document.querySelector('.soundOff')
 const sound = document.querySelector('.sound')
 const audio = document.querySelector('.audio')
 

@@ -1,5 +1,14 @@
+const breakAutostart = document.querySelector('.breakAutostart') 
+const workAutostart = document.querySelector('.workAutostart')
+const breakAutostartOn = document.querySelector('.breakAutostartOn') 
+const breakAutostartOff = document.querySelector('.breakAutostartOff') 
+const workAutostartOn = document.querySelector('.workAutostartOn')
+const workAutostartOff = document.querySelector('.workAutostartOff')
+
 icon.addEventListener('click', clickOnSettings)
 sound.addEventListener('click', switchSoundOnOff)
+workAutostart.addEventListener('click', switchWorkAutostartOnOff)
+breakAutostart.addEventListener('click', switchBreakAutostartOnOff)
 
 switchThemes()
 
@@ -57,5 +66,25 @@ function switchSoundOnOff() {
     sound.classList.add('clicked') 
     setTimeout(function () {
         sound.classList.remove('clicked')
+    }, 700)
+}
+
+function switchBreakAutostartOnOff() {
+    breakAutostartOff.classList.toggle('hide')
+    breakAutostartOn.classList.toggle('hide')
+    
+    breakAutostart.classList.add('clicked') 
+    setTimeout(function () {
+        breakAutostart.classList.remove('clicked')
+    }, 700)
+}
+
+function switchWorkAutostartOnOff() {
+    workAutostartOff.classList.toggle('hide')
+    workAutostartOn.classList.toggle('hide')
+    
+    workAutostart.classList.add('clicked') 
+    setTimeout(function () {
+        workAutostart.classList.remove('clicked')
     }, 700)
 }
