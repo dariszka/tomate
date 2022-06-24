@@ -8,6 +8,7 @@ const timerDisplays = document.querySelector('.timerDisplays')
 const workTimerDisplay = document.querySelector('.workTimer')
 const breakTimerDisplay = document.querySelector('.breakTimer')
 const longBreakTimerDisplay = document.querySelector('.longBreakTimer')
+const sessionsTillLongBreak = document.querySelector('.sessionsTillLongBreak')
 const progress = document.querySelector('.progress')
 const goalToday = document.querySelector('.goalToday')
 const timeWorkedDiv = document.querySelector('.timeWorked')
@@ -76,14 +77,7 @@ longBreakTimerDisplay.onclick = function() {
 timerDisplays.addEventListener('click', (e) => {
     if (e.detail === 3) {
         if (longBreakTimerDisplay.classList.contains('hide')) {
-            longBreakTimerDisplay.classList.remove('hide')
-            updateTimerDisplay(longBreakTimeDuration.value*60, longBreakTimerDisplay)
-            isFirstRun = true
-            clearInterval(interval)
-            interval = false;
-
-            breakTimerDisplay.classList.add('hide')
-            workTimerDisplay.classList.add('hide')
+            switchToLongBreakDisplay()
         } else {
             switchToWorkDisplay()
             longBreakTimerDisplay.classList.add('hide')
@@ -111,11 +105,27 @@ function handleTimerClick(sessionDuration, display) {
                 playSound()
 
                 if (sessionDuration === workTimeDuration.value) {
-                    switchToBreakDisplay()
+                    if (sessionCount == sessionsTillLongBreak.value) {
+                        switchToLongBreakDisplay()
+                    } else {
+                        switchToBreakDisplay()
+                    }
                     sessionCount++
                     trackProgress(sessionCount, sessionDuration)
+
+                    if (breakAutostartOff.classList.contains('hide')) {
+                        if (sessionCount == sessionsTillLongBreak.value) {
+                        autostartSession(longBreakTimeDuration.value, longBreakTimerDisplay)
+                        } else {
+                        autostartSession(breakTimeDuration.value, breakTimerDisplay)
+                        }
+                    }
                 } else {
                     switchToWorkDisplay()
+
+                    if (workAutostartOff.classList.contains('hide')) {
+                        autostartSession(workTimeDuration.value, workTimerDisplay)
+                    }
                 }
             } 
         }, 1000)
@@ -144,6 +154,17 @@ function updateTimerDisplay(remainingTime, display) {
         }
 }
 
+function switchToWorkDisplay() {
+    clearInterval(interval)
+    interval = false;
+    updateTimerDisplay(workTimeDuration.value*60, workTimerDisplay)
+    workTimerDisplay.classList.remove('hide')
+    isFirstRun = true
+    
+    breakTimerDisplay.classList.add('hide')
+    longBreakTimerDisplay.classList.add('hide')
+}
+
 function switchToBreakDisplay() {
     clearInterval(interval)
     interval = false;
@@ -155,15 +176,15 @@ function switchToBreakDisplay() {
     longBreakTimerDisplay.classList.add('hide')
 };
 
-function switchToWorkDisplay() {
+function switchToLongBreakDisplay() {
+    longBreakTimerDisplay.classList.remove('hide')
+    updateTimerDisplay(longBreakTimeDuration.value*60, longBreakTimerDisplay)
+    isFirstRun = true
     clearInterval(interval)
     interval = false;
-    updateTimerDisplay(workTimeDuration.value*60, workTimerDisplay)
-    workTimerDisplay.classList.remove('hide')
-    isFirstRun = true
-    
+
     breakTimerDisplay.classList.add('hide')
-    longBreakTimerDisplay.classList.add('hide')
+    workTimerDisplay.classList.add('hide')
 }
 
 function playSound() {
@@ -211,3 +232,7 @@ progress.addEventListener('dblclick', function () {
     timeWorkedDiv.classList.toggle('hide')
     sessionsWorkedDiv.classList.toggle('hide')
 })
+
+function autostartSession (sessionDuration, display) {
+    handleTimerClick(sessionDuration, display)
+}
