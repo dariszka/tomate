@@ -68,8 +68,8 @@ body {
 }
 
 .showMenu {
-    width: 500px ;
-    min-height: 500px; 
+    width: 550px ;
+    min-height: 550px; 
     display: flex;
     flex-direction: column;
     gap: 15px;
