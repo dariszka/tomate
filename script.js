@@ -138,8 +138,8 @@ function handleTimerClick(sessionDuration, display) {
 
 function updateTimerDisplay(remainingTime, display) {
         hours = Math.floor(remainingTime / 3600) 
-        minutes = (remainingTime / 60) % 60 | 0
-        seconds = (Math.round(remainingTime)) % 60 | 0
+        minutes = Math.round(remainingTime) / 60  | 0
+        seconds = Math.round(remainingTime) % 60 | 0
         
         hours = hours < 10 ? '0' + hours : hours;
         minutes = minutes < 10 ? '0' + minutes : minutes;
