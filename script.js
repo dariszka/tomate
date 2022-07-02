@@ -31,6 +31,7 @@ let duration = false
 let remainingTime
 let sessionCount = 0
 let sessionDuration 
+let longBreakMultiplicity = false
 
 let previousTimeWorked = 0
 let totalTimeWorked = 0
@@ -86,6 +87,7 @@ timerDisplays.addEventListener('click', (e) => {
 });
 
 function handleTimerClick(sessionDuration, display) {
+    checkIfLongBreakMultiplicity(sessionCount)
     if(!interval){
         if (isFirstRun) {
             duration = sessionDuration * 60 * 1000
@@ -105,16 +107,18 @@ function handleTimerClick(sessionDuration, display) {
                 playSound()
 
                 if (sessionDuration === workTimeDuration.value) {
-                    if (sessionCount == sessionsTillLongBreak.value) {
+                    sessionCount++
+                    trackProgress(sessionCount, sessionDuration)
+                    checkIfLongBreakMultiplicity(sessionCount)
+                    
+                    if (longBreakMultiplicity) {
                         switchToLongBreakDisplay()
                     } else {
                         switchToBreakDisplay()
                     }
-                    sessionCount++
-                    trackProgress(sessionCount, sessionDuration)
 
                     if (breakAutostartOff.classList.contains('hide')) {
-                        if (sessionCount == sessionsTillLongBreak.value) {
+                        if (longBreakMultiplicity) {
                         autostartSession(longBreakTimeDuration.value, longBreakTimerDisplay)
                         } else {
                         autostartSession(breakTimeDuration.value, breakTimerDisplay)
@@ -235,4 +239,12 @@ progress.addEventListener('dblclick', function () {
 
 function autostartSession (sessionDuration, display) {
     handleTimerClick(sessionDuration, display)
+}
+
+function checkIfLongBreakMultiplicity(sessionCount) {
+    if (sessionCount % sessionsTillLongBreak.value === 0) {
+    longBreakMultiplicity = true
+    } else {
+        longBreakMultiplicity = false
+    }
 }
