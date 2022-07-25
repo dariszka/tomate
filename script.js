@@ -38,7 +38,7 @@ let totalTimeWorked = 0
 let convertedTotalTimeWorked
 
 window.onload = function () {
-    workTimerDisplay.textContent = workTimeDuration.value < 10 ? '0' + workTimeDuration.value + ':00': workTimeDuration.value + ':00';
+    updateTimerDisplay(workTimeDuration.value*60, workTimerDisplay)
     breakTimerDisplay.classList.add('hide')
     longBreakTimerDisplay.classList.add('hide')
 }
@@ -141,9 +141,9 @@ function handleTimerClick(sessionDuration, display) {
 }
 
 function updateTimerDisplay(remainingTime, display) {
-        hours = Math.floor(remainingTime / 3600) 
-        minutes = Math.round(remainingTime) / 60  | 0
-        seconds = Math.round(remainingTime) % 60 | 0
+        hours = Math.round(remainingTime) / 3600   |0
+        minutes = Math.round(remainingTime) / 60 % 60     | 0
+        seconds = Math.round(remainingTime) % 60   | 0
         
         hours = hours < 10 ? '0' + hours : hours;
         minutes = minutes < 10 ? '0' + minutes : minutes;
