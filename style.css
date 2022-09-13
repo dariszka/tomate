@@ -40,6 +40,7 @@ body {
 #container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 #settings {
@@ -47,11 +48,15 @@ body {
 }
 
 .icon {
-    margin: 25px 25px 0px 0px;
+    margin: 25px 25px 25px 0px;
     width: 35px;
     height: 35px;
     filter: brightness(0) saturate(100%) invert(6%) sepia(69%) saturate(2606%) hue-rotate(298deg) brightness(87%) contrast(109%);
     transition: 0.5s;
+
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .darkIcon {
@@ -61,6 +66,11 @@ body {
 .rotate {
     transform: rotate(180deg);
     transition: 0.5s;
+}
+
+#content {
+    padding-bottom: 5px;
+    margin: auto;
 }
 
 .menu {
@@ -128,7 +138,6 @@ input {
     transform: translate(-50%, -50%);
 }
 
-
 .input button.plus:after {
     transform: translate(-50%, -50%) rotate(90deg);
 }
@@ -144,10 +153,6 @@ input {
     100%   {font-size: 25px;}
 }
 
-#content {
-    margin: auto;
-}
-
 .centralDisplay {
     display: flex;
     flex-direction: column;
@@ -155,8 +160,9 @@ input {
 }
 
 #greeting {
-    font-size: 45px;
+    font-size: 60px;
     text-align: center;
+    padding: 0px 50px 0px 50px;
 }
 
 .workTimer,
@@ -167,7 +173,8 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 150px;
+    font-size: 200px;
+    padding-bottom: 40px;
 }
 
 .hide {
@@ -177,8 +184,110 @@ input {
 #footer {
     background-color: rgb(42, 18, 38);
     color: rgb(138, 42, 109);
-    margin-top: auto;
     text-align: center;
     text-decoration: none;
     padding: 5px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
 }
+
+@media screen and (max-width: 650px){
+    .showMenu {
+        width: 280px ;
+        min-height: 430px;
+        font-size: 15px;
+        gap: 10px;
+    }
+    .input {
+        column-gap: 3px;
+    }
+    input {
+        padding: 2px;
+        font-size: 15px;
+        width: 35px;
+    }
+    .input button:before,
+    .input button:after {
+        width: 10px;
+    }
+    #greeting{
+        font-size: 35px;
+        padding: 20px;
+    }
+    .workTimer,
+    .breakTimer,
+    .longBreakTimer {
+       font-size: 120px; 
+    }
+    .centralDisplay {
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 415px){
+    .showMenu {
+        width: 145px ;
+        min-height: 230px;
+        font-size: 9px;
+        gap: 7px;
+        box-shadow: 15px 15px  rgb(43, 0, 28);
+        padding: 10px;
+    }
+    .input {
+        gap: 0px;
+        margin-top: -4px;
+        margin-bottom: -2px;
+    }
+    input {
+        padding: 2px;
+        font-size: 9px;
+        width: 20px;
+    }
+    .input button:before,
+    .input button:after {
+        width: 5px;
+        height: 2px;
+    }
+    .work {
+        margin-bottom: -5px;
+    }
+    .goal, 
+    .sessions2LongBreak {
+        gap: 10px;
+        margin-top: 2px;
+    }
+
+    .icon {
+        width: 25px;
+        height: 25px;
+    }
+    #greeting{
+        font-size: 23px;
+        padding: 20px;
+        padding-bottom: 0;
+    }
+    .workTimer,
+    .breakTimer,
+    .longBreakTimer {
+       font-size: 70px; 
+    }
+}
+
+@media screen and (max-width: 241px){
+    .icon{
+        width: 10px;
+        height: 10px;
+    }
+    #greeting{
+        font-size: 10px;
+    }
+    .workTimer,
+    .breakTimer,
+    .longBreakTimer {
+       font-size: 30px; 
+    }
+    .centralDisplay {
+        gap: 10px;
+    }
+} 
